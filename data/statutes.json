@@ -1,0 +1,315 @@
+[
+  {
+    "id": "bns_318",
+    "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+    "section": "Section 318",
+    "legacy_code": "Section 420 of Indian Penal Code (IPC)",
+    "title": "Cheating and dishonestly inducing delivery of property",
+    "category": "Criminal Law (Financial & Property Fraud)",
+    "summary": "Covers financial fraud, fake job offers, investment scams, and deception where someone induces a victim to deliver money or property.",
+    "full_text": "Whoever cheats and thereby dishonestly induces the person deceived to deliver any property to any person, or to make, alter or destroy the whole or any part of a valuable security, or anything which is signed or sealed, and which is capable of being converted into a valuable security, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine.",
+    "bailable": "Non-Bailable",
+    "cognizable": "Cognizable (Police can arrest without warrant and register FIR)",
+    "punishment": "Imprisonment up to 7 years and fine",
+    "remedy_steps": [
+      "Gather digital evidence immediately: bank transaction statements, UPI transaction IDs, WhatsApp/email communications, and scammer phone numbers.",
+      "If money was lost online, immediately call the National Cyber Crime Helpline at 1930 or lodge an online complaint at cybercrime.gov.in within the first 2-4 golden hours to freeze beneficiary accounts.",
+      "File a formal Police Complaint / FIR under Section 173 of BNSS (2023) at your local police station or Cyber Crime Police Station.",
+      "If police refuse to register FIR, submit a written complaint to the Superintendent of Police (SP) or file a private complaint before the Judicial Magistrate."
+    ],
+    "keywords": ["cheating", "fraud", "420", "fake job", "scam", "money fraud", "online scam", "property delivery", "deception", "swindling", "upi fraud"]
+  },
+  {
+    "id": "bns_316",
+    "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+    "section": "Section 316",
+    "legacy_code": "Section 405 & 406 of Indian Penal Code (IPC)",
+    "title": "Criminal Breach of Trust",
+    "category": "Criminal Law (Property & Custody)",
+    "summary": "Committed when someone is entrusted with property or money, but misappropriates, converts it to their own use, or dishonestly refuses to return it.",
+    "full_text": "Whoever, being in any manner entrusted with property, or with any dominion over property, dishonestly misappropriates or converts to his own use that property, or dishonestly uses or disposes of that property in violation of any direction of law prescribing the mode in which such trust is to be discharged, commits criminal breach of trust. Punishable with imprisonment of either description for a term which may extend to five years, or with fine, or with both.",
+    "bailable": "Non-Bailable",
+    "cognizable": "Cognizable",
+    "punishment": "Imprisonment up to 5 years, or fine, or both",
+    "remedy_steps": [
+      "Send a formal legal notice demanding return of entrusted assets/funds within 15 days.",
+      "Preserve proof of entrustment (receipts, agreements, emails, witness statements).",
+      "Lodge an FIR under Section 173 BNSS with the local police station.",
+      "Approach the Magistrate under Section 175(3) BNSS if police inaction occurs."
+    ],
+    "keywords": ["breach of trust", "misappropriation", "entrusted property", "embezzlement", "406 ipc", "refused to return money", "custody of goods"]
+  },
+  {
+    "id": "bns_303",
+    "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+    "section": "Section 303",
+    "legacy_code": "Section 378 & 379 of Indian Penal Code (IPC)",
+    "title": "Theft and Punishment for Theft",
+    "category": "Criminal Law (Property Offences)",
+    "summary": "Taking movable property dishonestly out of someone's possession without their consent.",
+    "full_text": "Whoever, intending to take dishonestly any movable property out of the possession of any person without that person's consent, moves that property in order to such taking, is said to commit theft. Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both. In case of second or subsequent conviction, imprisonment shall extend to five years.",
+    "bailable": "Non-Bailable",
+    "cognizable": "Cognizable",
+    "punishment": "Imprisonment up to 3 years, or fine, or both (Up to 5 years for repeat offenders)",
+    "remedy_steps": [
+      "Report theft immediately to police to obtain an FIR copy (needed for insurance and tracking).",
+      "Provide IMEI numbers (for mobile phones), vehicle registration details, or serial numbers.",
+      "Track lost phones via Central Equipment Identity Register (CEIR portal: ceir.gov.in)."
+    ],
+    "keywords": ["theft", "stolen", "robbery", "pickpocket", "bike stolen", "phone stolen", "burglary", "379 ipc"]
+  },
+  {
+    "id": "bns_356",
+    "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+    "section": "Section 356",
+    "legacy_code": "Section 499 & 500 of Indian Penal Code (IPC)",
+    "title": "Defamation and Community Service Provision",
+    "category": "Criminal Law (Reputation & Speech)",
+    "summary": "Making or publishing false imputations intended to harm the reputation of any person. BNS 2023 introduces community service as a progressive penalty.",
+    "full_text": "Whoever, by words either spoken or intended to be read, or by signs or by visible representations, makes or publishes any imputation concerning any person intending to harm the reputation of such person, is said to defame that person. Punished with simple imprisonment up to two years, or with fine, or with both, or with community service.",
+    "bailable": "Bailable",
+    "cognizable": "Non-Cognizable (Requires Magistrate permission/complaint)",
+    "punishment": "Simple imprisonment up to 2 years, fine, or community service",
+    "remedy_steps": [
+      "Preserve verifiable records of defamatory statements (screenshots, URLs, print publications, audio).",
+      "Issue a Cease and Desist / Legal Demand Notice seeking unconditional apology and retraction.",
+      "File a private criminal complaint under Section 223 of BNSS before the Chief Judicial Magistrate.",
+      "Optionally file a civil suit for damages/compensation in Civil Court."
+    ],
+    "keywords": ["defamation", "slander", "libel", "reputation", "false accusations", "public insult", "community service", "500 ipc"]
+  },
+  {
+    "id": "bns_351",
+    "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+    "section": "Section 351",
+    "legacy_code": "Section 503 & 506 of Indian Penal Code (IPC)",
+    "title": "Criminal Intimidation",
+    "category": "Criminal Law (Threats & Safety)",
+    "summary": "Threatening someone with injury to their person, reputation, or property to cause alarm or force them to act against their will.",
+    "full_text": "Whoever threatens another with any injury to his person, reputation or property, or to the person or reputation of anyone in whom that person is interested, with intent to cause alarm to that person, commits criminal intimidation. Punished with imprisonment up to two years or fine. If threat is to cause death or grievous hurt, imprisonment up to seven years.",
+    "bailable": "Bailable (Simple) / Non-Bailable (Death/grievous hurt threat in certain states)",
+    "cognizable": "Non-Cognizable (Simple) / Cognizable depending on gravity",
+    "punishment": "Imprisonment up to 2 years, or up to 7 years if threat of death/grievous hurt",
+    "remedy_steps": [
+      "Record threatening phone calls, voicemails, or preserve threatening text messages.",
+      "File a Non-Cognizable Report (NCR) or FIR at police station depending on the severity of threat.",
+      "Seek police protection or an injunction order if imminent bodily harm is feared."
+    ],
+    "keywords": ["threat", "intimidation", "threat to kill", "blackmail", "506 ipc", "verbal threats", "harassment"]
+  },
+  {
+    "id": "bns_78",
+    "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+    "section": "Section 78",
+    "legacy_code": "Section 354D of Indian Penal Code (IPC)",
+    "title": "Stalking (Physical and Cyber Stalking)",
+    "category": "Women & Personal Safety",
+    "summary": "Following a woman, contacting or attempting to contact repeatedly despite clear disinterest, or monitoring her internet, email, or electronic communication.",
+    "full_text": "Any man who follows a woman and contacts, or attempts to contact such woman repeatedly despite a clear indication of disinterest; or monitors the use by a woman of the internet, email or any other form of electronic communication, commits the offence of stalking. First conviction punishable with imprisonment up to 3 years and fine; second conviction with up to 5 years and fine.",
+    "bailable": "Bailable (First conviction) / Non-Bailable (Subsequent conviction)",
+    "cognizable": "Cognizable",
+    "punishment": "Up to 3 years imprisonment (1st offence), up to 5 years (repeat)",
+    "remedy_steps": [
+      "Do not delete stalking messages, emails, GPS trackers, or social media handles; keep chronological evidence.",
+      "Lodge complaint with Women Helpline (1091) or Cyber Crime portal.",
+      "File an FIR under Section 78 BNS at any local police station or All-Women Police Station.",
+      "Apply for protection orders under the Protection of Women from Domestic Violence Act if stalker is known/family."
+    ],
+    "keywords": ["stalking", "cyber stalking", "following woman", "unwanted messages", "monitoring online", "354d ipc", "women safety"]
+  },
+  {
+    "id": "bnss_173",
+    "act": "Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023",
+    "section": "Section 173",
+    "legacy_code": "Section 154 of Code of Criminal Procedure (CrPC)",
+    "title": "Information in cognizable cases (Registration of FIR & Zero FIR)",
+    "category": "Criminal Procedure & Police Powers",
+    "summary": "Mandates police to record First Information Reports for cognizable offences. Explicitly codifies Zero-FIR (filing at any police station regardless of jurisdiction) and electronic FIR (e-FIR).",
+    "full_text": "Every information relating to the commission of a cognizable offence, if given orally to an officer in charge of a police station, shall be reduced to writing by him or under his direction, and be read over to the informant. Information may be given electronically (e-FIR) or irrespective of the area where the offence was committed (Zero FIR). A free copy of the FIR must be provided immediately to the informant.",
+    "bailable": "N/A (Procedural Provision)",
+    "cognizable": "Mandatory for Cognizable Offences",
+    "punishment": "Departmental action and prosecution under Section 199 BNS against police officers refusing to register FIR",
+    "remedy_steps": [
+      "You have the right to file an FIR at ANY police station in India (Zero FIR). The police cannot turn you away citing lack of jurisdiction.",
+      "Insist on receiving a free signed copy of the FIR immediately with the Crime Diary Number.",
+      "If the Station House Officer (SHO) refuses registration, send the complaint substance by registered post or email to the Superintendent of Police (SP) under Section 173(4) BNSS.",
+      "If no action is taken within statutory time, approach the Judicial Magistrate under Section 175(3) BNSS for orders directing investigation."
+    ],
+    "keywords": ["fir", "zero fir", "efir", "police complaint", "police refused fir", "154 crpc", "register case", "jurisdiction"]
+  },
+  {
+    "id": "bnss_47_41d",
+    "act": "Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023",
+    "section": "Section 47 & Section 41D",
+    "legacy_code": "Section 50 & 50A of Code of Criminal Procedure (CrPC)",
+    "title": "Rights of Arrested Persons (Grounds of Arrest & Legal Aid)",
+    "category": "Criminal Procedure & Arrest Rights",
+    "summary": "Every police officer arresting any person without warrant must immediately communicate full particulars of the offence, grounds of arrest, right to bail, and right to consult an advocate.",
+    "full_text": "Every person arrested without warrant shall forthwith be informed by the police officer of the full particulars of the offence for which he is arrested or other grounds for such arrest. Where arrest is for a bailable offence, police must inform the person of their right to be released on bail. The arrested person has the right to meet an advocate of his choice during interrogation, though not throughout.",
+    "bailable": "Mandatory Safeguard",
+    "cognizable": "N/A",
+    "punishment": "Illegal detention renders arresting officer liable for contempt and prosecution",
+    "remedy_steps": [
+      "Ask the arresting officer politely: 'Under what section and grounds am I being detained?'",
+      "Ensure an Arrest Memo is prepared stating date, time, location, signed by at least one family member or witness.",
+      "Inform a nominated friend or family member immediately (mandatory under Section 48 BNSS).",
+      "Demand to meet an advocate or request free legal aid from Legal Aid Defense Counsel (NALSA)."
+    ],
+    "keywords": ["arrest rights", "arrest memo", "grounds of arrest", "police detention", "right to lawyer", "bail rights", "50 crpc"]
+  },
+  {
+    "id": "bnss_58",
+    "act": "Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023",
+    "section": "Section 58",
+    "legacy_code": "Section 57 of Code of Criminal Procedure (CrPC)",
+    "title": "Person arrested not to be detained more than twenty-four hours",
+    "category": "Criminal Procedure & Fundamental Rights",
+    "summary": "No police officer shall detain in custody a person arrested without a warrant for a longer period than under all the circumstances of the case is reasonable, and such period shall not exceed 24 hours excluding journey time.",
+    "full_text": "No police officer shall detain in custody a person arrested without warrant for a longer period than under all the circumstances of the case is reasonable, and such period shall not, in the absence of a special order of a Magistrate under Section 187, exceed twenty-four hours exclusive of the time necessary for the journey from the place of arrest to the Magistrate's Court.",
+    "bailable": "Fundamental Procedural Guarantee",
+    "cognizable": "N/A",
+    "punishment": "Violation constitutes illegal confinement punishable under BNS Section 127",
+    "remedy_steps": [
+      "Check the exact timestamp of detention on the arrest memo.",
+      "If 24 hours lapse without production before a Magistrate, family/counsel should immediately file a Habeas Corpus petition before High Court (Art. 226) or Supreme Court (Art. 32).",
+      "Advocate can move an urgent bail application before the Remand Magistrate."
+    ],
+    "keywords": ["24 hours", "magistrate production", "illegal detention", "police remand", "habeas corpus", "57 crpc"]
+  },
+  {
+    "id": "const_art_21",
+    "act": "Constitution of India",
+    "section": "Article 21",
+    "legacy_code": "Fundamental Right (Part III)",
+    "title": "Protection of Life and Personal Liberty",
+    "category": "Constitutional Law",
+    "summary": "No person shall be deprived of his life or personal liberty except according to procedure established by law. Encompasses right to privacy, speedy trial, dignity, and livelihood.",
+    "full_text": "No person shall be deprived of his life or personal liberty except according to procedure established by law.",
+    "bailable": "Constitutional Injunction",
+    "cognizable": "Enforceable via Writ Jurisdiction",
+    "punishment": "State compensation for illegal custodial torture or deprivation of liberty",
+    "remedy_steps": [
+      "File a Writ Petition under Article 226 before the jurisdictional High Court.",
+      "For severe national or fundamental rights violation, move Article 32 before Supreme Court of India.",
+      "Petition State Human Rights Commission (SHRC) or National Human Rights Commission (NHRC) for custodial abuses."
+    ],
+    "keywords": ["article 21", "life and liberty", "fundamental right", "privacy", "custodial torture", "human rights", "speedy trial"]
+  },
+  {
+    "id": "const_art_22",
+    "act": "Constitution of India",
+    "section": "Article 22",
+    "legacy_code": "Fundamental Right (Part III)",
+    "title": "Protection against arrest and detention in certain cases",
+    "category": "Constitutional Law",
+    "summary": "Guarantees that an arrested person cannot be denied right to be informed of grounds, right to consult legal counsel, and must be produced before magistrate within 24 hours.",
+    "full_text": "(1) No person who is arrested shall be detained in custody without being informed, as soon as may be, of the grounds for such arrest nor shall he be denied the right to consult, and to be defended by, a legal practitioner of his choice. (2) Every person who is arrested and detained in custody shall be produced before the nearest magistrate within a period of twenty-four hours of such arrest.",
+    "bailable": "Constitutional Guarantee",
+    "cognizable": "N/A",
+    "punishment": "Detention beyond 24 hours without magistrate order is unconstitutional",
+    "remedy_steps": [
+      "Invoke Article 22 during police inquiry; inform police you wish to speak to an attorney.",
+      "If legal aid is unaffiliated, invoke Article 39A demanding free legal counsel.",
+      "Family members can demand immediate production before the Judicial Magistrate."
+    ],
+    "keywords": ["article 22", "detention rights", "consult lawyer", "magistrate 24 hours", "constitutional protections"]
+  },
+  {
+    "id": "const_art_39a",
+    "act": "Constitution of India",
+    "section": "Article 39A",
+    "legacy_code": "Directive Principle of State Policy & NALSA Act 1987",
+    "title": "Equal Justice and Free Legal Aid",
+    "category": "Constitutional Law & Legal Aid",
+    "summary": "State must ensure opportunities for securing justice are not denied to any citizen by reason of economic or other disabilities, providing free legal aid.",
+    "full_text": "The State shall secure that the operation of the legal system promotes justice, on a basis of equal opportunity, and shall, in particular, provide free legal aid, by suitable legislation or schemes or in any other way, to ensure that opportunities for securing justice are not denied to any citizen by reason of economic or other disabilities.",
+    "bailable": "State Duty",
+    "cognizable": "N/A",
+    "punishment": "N/A",
+    "remedy_steps": [
+      "Any person whose annual income is below statutory limit (or women, children, undertrials, SC/ST) is entitled to a free government lawyer.",
+      "Contact National Legal Services Authority (NALSA) toll-free helpline at 15100.",
+      "Visit the Legal Services Clinic situated in any District Court or Taluk Court complex."
+    ],
+    "keywords": ["free legal aid", "nalsa", "article 39a", "free lawyer", "poor person court", "legal service clinic", "15100"]
+  },
+  {
+    "id": "consumer_sec_35",
+    "act": "Consumer Protection Act, 2019",
+    "section": "Section 35 & Section 2(7)",
+    "legacy_code": "Consumer Protection Act 1986",
+    "title": "Filing of Consumer Complaints & Redressal Forums",
+    "category": "Consumer Rights & Civil Remedies",
+    "summary": "Enables consumers to file complaints against manufacturers, traders, or service providers for defective goods, deficient service, or unfair trade practices.",
+    "full_text": "A complaint, in relation to any goods sold or delivered or agreed to be sold or delivered or any service provided or agreed to be provided, may be filed with a District Commission by the consumer, or any recognized consumer association, or Central Authority. Pecuniary jurisdiction: District Commission up to ₹50 Lakhs; State Commission ₹50 Lakhs to ₹2 Crores; National Commission exceeding ₹2 Crores.",
+    "bailable": "Civil / Quasi-Judicial Procedure",
+    "cognizable": "N/A",
+    "punishment": "Refund, replacement, compensation for damages/mental agony, and punitive costs",
+    "remedy_steps": [
+      "Send a written grievance or formal email notice to customer care/grievance officer of the company.",
+      "Call National Consumer Helpline (NCH) at 1915 or register complaint on consumerhelpline.gov.in.",
+      "File an e-daakhil petition on edaakhil.nic.in without physical court visits, paying nominal statutory fees."
+    ],
+    "keywords": ["consumer complaint", "defective product", "refund", "e-commerce fraud", "warranty denied", "edaakhil", "1915", "deficiency of service"]
+  },
+  {
+    "id": "rti_sec_6",
+    "act": "Right to Information (RTI) Act, 2005",
+    "section": "Section 6 & Section 7",
+    "legacy_code": "RTI Act 2005",
+    "title": "Request for Obtaining Information and Timelines",
+    "category": "Civil Governance & Citizen Rights",
+    "summary": "Empowers Indian citizens to request official records and answers from Public Authorities with strict 30-day compliance timelines.",
+    "full_text": "A person who desires to obtain any information under this Act shall make a request in writing or through electronic means in English or Hindi or in the official language of the area, accompanying prescribed fee (₹10), to the Central/State Public Information Officer. The PIO must provide information within 30 days of receipt, or within 48 hours if it concerns the life or liberty of a person.",
+    "bailable": "Administrative Law",
+    "cognizable": "Statutory Obligation",
+    "punishment": "Penalty of ₹250 per day up to ₹25,000 on PIO for unjustified delay or refusal",
+    "remedy_steps": [
+      "Identify the relevant Public Authority (e.g., Municipal Corporation, Ministry, University).",
+      "Draft concise, specific questions asking for existing records, orders, or files (avoid questions asking 'why').",
+      "File online at rtionline.gov.in (for Central ministries) or state RTI portals with ₹10 application fee.",
+      "If no reply is received within 30 days, file a First Appeal under Section 19(1) within 30 days to the First Appellate Authority (FAA)."
+    ],
+    "keywords": ["rti", "right to information", "government inquiry", "pio", "file rti", "rtionline", "30 days deadline", "official records"]
+  },
+  {
+    "id": "it_act_66d",
+    "act": "Information Technology (IT) Act, 2000",
+    "section": "Section 66D",
+    "legacy_code": "IT Act Amendment 2008",
+    "title": "Punishment for Cheating by Personation by using Computer Resource",
+    "category": "Cyber Law",
+    "summary": "Penalizes individuals who cheat by impersonating someone else or creating fake digital profiles/accounts using any computer resource.",
+    "full_text": "Whoever, by means of any communication device or computer resource, cheats by personation, shall be punished with imprisonment of either description for a term which may extend to three years and shall also be liable to fine which may extend to one lakh rupees.",
+    "bailable": "Bailable",
+    "cognizable": "Cognizable",
+    "punishment": "Imprisonment up to 3 years and fine up to ₹1,00,000",
+    "remedy_steps": [
+      "Take screenshots of impersonating profile, message headers, and URL links.",
+      "Report profile on host platform (Instagram/Facebook/X/LinkedIn) for impersonation.",
+      "Lodge complaint on cybercrime.gov.in under 'Report Cyber Crime'.",
+      "Also invoke Section 319 BNS (Cheating by personation) in police FIR."
+    ],
+    "keywords": ["cyber crime", "fake profile", "impersonation", "it act 66d", "online identity theft", "phishing", "computer scam"]
+  },
+  {
+    "id": "dv_act_12",
+    "act": "Protection of Women from Domestic Violence Act, 2005",
+    "section": "Section 12 & Section 18",
+    "legacy_code": "PWDVA 2005",
+    "title": "Application to Magistrate & Protection Orders",
+    "category": "Women & Family Welfare",
+    "summary": "Enables an aggrieved woman living in a shared household to seek immediate protection orders, residence orders, and monetary relief against domestic violence.",
+    "full_text": "An aggrieved person or a Protection Officer or any other person on behalf of the aggrieved person may present an application to the Magistrate seeking one or more reliefs under this Act, including protection orders prohibiting acts of domestic violence, residence orders preventing eviction, monetary relief, and custody orders.",
+    "bailable": "Quasi-Criminal / Civil Relief",
+    "cognizable": "Non-compliance with protection order is Cognizable & Non-Bailable (Section 31)",
+    "punishment": "Breach of protection order punishable with imprisonment up to 1 year or ₹20,000 fine",
+    "remedy_steps": [
+      "Contact the local Protection Officer (appointed in every district) or Service Provider NGO.",
+      "Dial Women Helpline at 181 or 1091 for immediate rescue or emergency shelter.",
+      "File an application under Section 12 before Judicial Magistrate First Class.",
+      "Court can grant ex-parte interim protection orders within 3 days of application."
+    ],
+    "keywords": ["domestic violence", "pwdva", "protection order", "wife harassment", "shared household", "maintenance", "women helpline 181"]
+  }
+]
