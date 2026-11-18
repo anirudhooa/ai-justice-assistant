@@ -3,19 +3,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const navTabs = document.querySelectorAll(".nav-tab");
     const tabPanes = document.querySelectorAll(".tab-pane");
 
+    function switchTab(targetId) {
+        navTabs.forEach(t => {
+            if (t.getAttribute("data-tab") === targetId) {
+                t.classList.add("active");
+            } else {
+                t.classList.remove("active");
+            }
+        });
+
+        tabPanes.forEach(p => {
+            if (p.id === targetId) {
+                p.classList.add("active");
+            } else {
+                p.classList.remove("active");
+            }
+        });
+
+        // Lazy load statutes when tab is opened
+        if (targetId === "statutes-tab" && !allStatutesLoaded) {
+            loadStatutes();
+        }
+    }
+
     navTabs.forEach(tab => {
         tab.addEventListener("click", () => {
-            navTabs.forEach(t => t.classList.remove("active"));
-            tabPanes.forEach(p => p.classList.remove("active"));
-            
-            tab.classList.add("active");
             const targetId = tab.getAttribute("data-tab");
-            const targetPane = document.getElementById(targetId);
-            if (targetPane) targetPane.classList.add("active");
+            switchTab(targetId);
+        });
+    });
 
-            // Lazy load statutes when tab is opened
-            if (targetId === "statutes-tab" && !allStatutesLoaded) {
-                loadStatutes();
+    // Top Header Nav Tab Switchers
+    document.querySelectorAll("[data-switch-tab]").forEach(link => {
+        link.addEventListener("click", (e) => {
+            const targetTab = link.getAttribute("data-switch-tab");
+            if (targetTab) {
+                switchTab(targetTab);
             }
         });
     });
@@ -93,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="msg-avatar">👤</div>
             <div class="msg-body">
                 <div class="msg-header">
-                    <span class="msg-sender" style="color: #93c5fd;">You</span>
+                    <span class="msg-sender" style="color: #EADBC8;">Citizen Inquiry</span>
                 </div>
                 <div class="msg-content">${escapeHTML(text)}</div>
             </div>
@@ -145,9 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let followupsHtml = "";
         if (followups && followups.length > 0) {
             followupsHtml = `
-                <div style="margin-top: 14px; border-top: 1px dashed var(--border-color); padding-top: 10px;">
-                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--gold); text-transform: uppercase;">Related Questions:</span>
-                    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;">
+                <div style="margin-top: 16px; border-top: 1px dashed var(--border-subtle); padding-top: 12px;">
+                    <span style="font-size: 0.74rem; font-weight: 700; color: var(--bronze); text-transform: uppercase; letter-spacing: 0.08em;">Related Legal Inquiries:</span>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
                         ${followups.map(f => `<button class="chip followup-chip" style="font-size: 0.75rem;">${escapeHTML(f)}</button>`).join("")}
                     </div>
                 </div>
@@ -158,8 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="msg-avatar">⚖️</div>
             <div class="msg-body">
                 <div class="msg-header">
-                    <span class="msg-sender">AI Justice Assistant</span>
-                    <span class="msg-tag">${escapeHTML(mode || "RAG Verified")}</span>
+                    <span class="msg-sender">AI Justice Department Assistant</span>
+                    <span class="msg-tag">${escapeHTML(mode || "Official Statutory RAG")}</span>
                 </div>
                 <div class="msg-content">${parsedHtml}</div>
                 ${followupsHtml}
@@ -182,8 +205,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!citations || citations.length === 0) {
             citationsList.innerHTML = `
                 <div class="empty-state">
-                    <div class="empty-icon">⚖️</div>
-                    <p>No direct statutory citations triggered for this query.</p>
+                    <div class="empty-icon-wrap">
+                        <img src="/static/images/scales-gold.png" alt="Scales of Justice" class="empty-scales-img">
+                    </div>
+                    <h4 class="empty-title">Statutory Evidence Docket</h4>
+                    <p>No direct statutory citations triggered for this specific query.</p>
                 </div>
             `;
             activeCountBadge.innerText = "0 Sections Cited";
@@ -194,18 +220,18 @@ document.addEventListener("DOMContentLoaded", () => {
         citationsList.innerHTML = citations.map(c => `
             <div class="statute-card">
                 <div class="statute-top">
-                    <span class="statute-sec">${c.section}</span>
-                    <span class="statute-score">Score: ${Math.round(c.relevance_score * 100)}%</span>
+                    <span class="statute-sec">${escapeHTML(c.section)}</span>
+                    <span class="statute-score">Match: ${Math.round(c.relevance_score * 100)}%</span>
                 </div>
-                <div class="statute-act">${c.act}</div>
-                ${c.legacy_code ? `<span class="statute-legacy">🔄 Formerly ${c.legacy_code}</span>` : ''}
-                <div class="statute-title">${c.title}</div>
-                <div class="statute-summary">${c.summary}</div>
+                <div class="statute-act">${escapeHTML(c.act)}</div>
+                ${c.legacy_code ? `<span class="statute-legacy">🔄 Formerly ${escapeHTML(c.legacy_code)}</span>` : ''}
+                <div class="statute-title">${escapeHTML(c.title)}</div>
+                <div class="statute-summary">${escapeHTML(c.summary)}</div>
                 <div class="statute-badges">
-                    ${c.cognizable !== "N/A" ? `<span class="statute-pill pill-cognizable">${c.cognizable.split(' ')[0]}</span>` : ''}
-                    ${c.bailable !== "N/A" ? `<span class="statute-pill pill-bailable">${c.bailable}</span>` : ''}
+                    ${c.cognizable && c.cognizable !== "N/A" ? `<span class="statute-pill pill-cognizable">${escapeHTML(c.cognizable.split(' ')[0])}</span>` : ''}
+                    ${c.bailable && c.bailable !== "N/A" ? `<span class="statute-pill pill-bailable">${escapeHTML(c.bailable)}</span>` : ''}
                 </div>
-                ${c.punishment ? `<div style="font-size: 0.74rem; color: var(--gold-light); margin-top: 6px;"><strong>Penalty:</strong> ${c.punishment}</div>` : ''}
+                ${c.punishment ? `<div style="font-size: 0.76rem; color: var(--bronze-dark); margin-top: 8px; border-top: 1px dashed var(--border-subtle); padding-top: 6px;"><strong>Statutory Penalty:</strong> ${escapeHTML(c.punishment)}</div>` : ''}
             </div>
         `).join("");
     }
@@ -215,7 +241,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
+        if (!str) return "";
+        return String(str).replace(/[&<>'"]/g, 
             tag => ({
                 '&': '&amp;',
                 '<': '&lt;',
@@ -255,9 +282,9 @@ document.addEventListener("DOMContentLoaded", () => {
             converterResult.style.display = "block";
             if (!data.found) {
                 converterResult.innerHTML = `
-                    <div style="text-align: center; color: var(--accent-red); padding: 10px;">
-                        <h3>❌ No Direct Code Mapping Found</h3>
-                        <p style="color: var(--text-secondary); margin-top: 6px;">${data.message}</p>
+                    <div style="text-align: center; color: var(--accent-red); padding: 16px;">
+                        <h3 style="font-family: var(--font-display); font-size: 1.3rem;">❌ No Direct Statutory Transition Found</h3>
+                        <p style="color: var(--text-secondary); margin-top: 8px; font-size: 0.9rem;">${escapeHTML(data.message)}</p>
                     </div>
                 `;
                 return;
@@ -266,22 +293,22 @@ document.addEventListener("DOMContentLoaded", () => {
             converterResult.innerHTML = `
                 <div class="conversion-grid">
                     <div class="code-col">
-                        <h4>Old Law (Repealed)</h4>
-                        <div class="law-name" style="color: #fca5a5;">${data.legacy_law}</div>
+                        <h4>Old Law (Repealed Code)</h4>
+                        <div class="law-name" style="color: var(--accent-red);">${escapeHTML(data.legacy_law)}</div>
                     </div>
-                    <div class="code-col" style="border-color: var(--gold);">
-                        <h4>Current Reformed Law (In Force)</h4>
-                        <div class="law-name" style="color: var(--gold);">${data.current_law}</div>
+                    <div class="code-col" style="border-color: var(--bronze); background-color: #FAF6F0;">
+                        <h4 style="color: var(--bronze-dark);">Current Reformed Law (In Force)</h4>
+                        <div class="law-name" style="color: var(--espresso);">${escapeHTML(data.current_law)}</div>
                     </div>
                 </div>
                 <div class="converter-details">
-                    <h3 style="color: #ffffff; margin-bottom: 8px;">${data.offence_title}</h3>
-                    <p style="color: var(--text-secondary);">${data.summary}</p>
-                    <div style="display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap;">
-                        <span class="statute-pill pill-cognizable">Status: ${data.cognizable}</span>
-                        <span class="statute-pill pill-bailable">Bail: ${data.bailable}</span>
+                    <h3>${escapeHTML(data.offence_title)}</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">${escapeHTML(data.summary)}</p>
+                    <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
+                        <span class="statute-pill pill-cognizable">Status: ${escapeHTML(data.cognizable)}</span>
+                        <span class="statute-pill pill-bailable">Bail: ${escapeHTML(data.bailable)}</span>
                     </div>
-                    <p style="margin-top: 12px; color: var(--gold-light);"><strong>Statutory Penalty:</strong> ${data.punishment}</p>
+                    <p style="margin-top: 14px; color: var(--bronze-dark); font-size: 0.88rem;"><strong>Statutory Penalty:</strong> ${escapeHTML(data.punishment)}</p>
                 </div>
             `;
         } catch (err) {
@@ -307,12 +334,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function loadStatutes() {
         try {
-            statutesGrid.innerHTML = `<p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">Loading statutory repository...</p>`;
+            statutesGrid.innerHTML = `<p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">Loading curated statutory repository...</p>`;
             const res = await fetch("/api/statutes");
             const data = await res.json();
             allStatutes = data.statutes || [];
             allStatutesLoaded = true;
-            document.getElementById("statute-count").innerText = allStatutes.length;
+            const countEl = document.getElementById("statute-count");
+            if (countEl) countEl.innerText = allStatutes.length;
             renderLibrary("all");
         } catch (e) {
             statutesGrid.innerHTML = `<p style="color: var(--accent-red);">Failed to load statutory library.</p>`;
@@ -326,27 +354,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (filtered.length === 0) {
-            statutesGrid.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center;">No statutes found for category '${category}'.</p>`;
+            statutesGrid.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 40px 0;">No statutes found for category '${escapeHTML(category)}'.</p>`;
             return;
         }
 
         statutesGrid.innerHTML = filtered.map(s => `
             <div class="grid-card">
                 <div>
-                    <div class="grid-card-cat">${s.category}</div>
-                    <div class="grid-card-sec">${s.section}</div>
-                    <div class="grid-card-act">${s.act}</div>
-                    ${s.legacy_code ? `<span class="statute-legacy" style="font-size: 0.72rem;">🔄 ${s.legacy_code}</span>` : ''}
-                    <div class="grid-card-title">${s.title}</div>
-                    <div class="grid-card-desc">${s.summary}</div>
+                    <div class="grid-card-cat">${escapeHTML(s.category)}</div>
+                    <div class="grid-card-sec">${escapeHTML(s.section)}</div>
+                    <div class="grid-card-act">${escapeHTML(s.act)}</div>
+                    ${s.legacy_code ? `<span class="statute-legacy" style="font-size: 0.72rem;">🔄 ${escapeHTML(s.legacy_code)}</span>` : ''}
+                    <div class="grid-card-title">${escapeHTML(s.title)}</div>
+                    <div class="grid-card-desc">${escapeHTML(s.summary)}</div>
                 </div>
                 <div>
                     <div class="statute-badges">
-                        ${s.cognizable !== "N/A" ? `<span class="statute-pill pill-cognizable">${s.cognizable.split(' ')[0]}</span>` : ''}
-                        ${s.bailable !== "N/A" ? `<span class="statute-pill pill-bailable">${s.bailable}</span>` : ''}
+                        ${s.cognizable && s.cognizable !== "N/A" ? `<span class="statute-pill pill-cognizable">${escapeHTML(s.cognizable.split(' ')[0])}</span>` : ''}
+                        ${s.bailable && s.bailable !== "N/A" ? `<span class="statute-pill pill-bailable">${escapeHTML(s.bailable)}</span>` : ''}
                     </div>
                     <div class="grid-card-footer">
-                        <span><strong>Penalty:</strong> ${s.punishment || 'Civil Redress'}</span>
+                        <span><strong>Penalty:</strong> ${escapeHTML(s.punishment || 'Civil Redress / Constitutional Remedy')}</span>
                     </div>
                 </div>
             </div>

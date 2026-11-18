@@ -5,6 +5,9 @@ from typing import List, Dict, Any, Optional
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "statutes.json")
 
@@ -78,11 +81,19 @@ class LegalRAGEngine:
                         score += 0.55
                 if token in s.get("keywords", []):
                     score += 0.15
+                elif len(token) >= 4 and any(token.startswith(kw[:4]) or kw.startswith(token[:4]) for kw in s.get("keywords", [])):
+                    score += 0.12
 
             # Keyword phrase match boost
             for kw in s.get("keywords", []):
                 if kw in query_lower:
                     score += 0.25
+
+            # Title words boost
+            title_lower = s.get("title", "").lower()
+            for token in query_tokens:
+                if len(token) >= 4 and token in title_lower:
+                    score += 0.15
 
             scored_results.append((score, s))
 
@@ -128,6 +139,77 @@ class LegalRAGEngine:
             "queried": code_query,
             "message": f"No direct mapping found in the primary database for '{code_query}'."
         }
+
+    def _generate_with_omniroute(self, query: str, context_statutes: List[Dict[str, Any]]) -> Optional[str]:
+        """Attempts generation using OmniRoute API (pointing to antigravity/gemini-3.8-flash-tiered)."""
+        api_key = os.environ.get("OMNIROUTE_API_KEY") or os.environ.get("OPENAI_API_KEY")
+        if not api_key:
+            return None
+
+        base_url = os.environ.get("OMNIROUTE_BASE_URL", "http://localhost:20128/v1").rstrip("/")
+        model = os.environ.get("OMNIROUTE_MODEL", "antigravity/gemini-3.8-flash-tiered")
+
+        try:
+            import requests
+
+            if context_statutes:
+                context_text = "\n\n".join([
+                    f"### {s['act']} - {s['section']} ({s.get('legacy_code', '')})\n"
+                    f"**Title**: {s['title']}\n"
+                    f"**Classification**: {s.get('cognizable', '')} | {s.get('bailable', '')}\n"
+                    f"**Statutory Provision**: {s['full_text']}\n"
+                    f"**Punishment**: {s.get('punishment', '')}\n"
+                    f"**Recommended Legal Steps**: {'; '.join(s.get('remedy_steps', []))}"
+                    for s in context_statutes
+                ])
+            else:
+                context_text = "No specific statutes retrieved for this conversational turn."
+
+            system_prompt = (
+                "You are an intelligent, empathetic AI assistant for Indian legal guidance and citizen rights. "
+                "You can chat naturally, conversationally, and helpfully with users on any topic. "
+                "When the user asks legal questions or describes a situation or query, use the provided legal RAG context "
+                "(Bharatiya Nyaya Sanhita / BNS 2023, BNSS, IPC equivalents, Constitution of India, and practical remedies) "
+                "to provide accurate, relevant, structured, and actionable guidance with sections, penalties, and practical steps. "
+                "If the query is a greeting or general conversational inquiry, chat naturally and introduce how you can assist them. "
+                "End legal assessments with: 'Disclaimer: This assistant provides legal literacy and informational assistance; it does not constitute formal legal counsel.'"
+            )
+
+            user_prompt = (
+                f"LEGAL RAG CONTEXT:\n{context_text}\n\n"
+                f"USER QUERY: {query}\n\n"
+                f"Respond to the user naturally and conversationally, incorporating relevant legal provisions and actionable advice if applicable:"
+            )
+
+            resp = requests.post(
+                f"{base_url}/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": model,
+                    "messages": [
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    "temperature": 0.5,
+                    "max_tokens": 1000
+                },
+                timeout=30
+            )
+
+            if resp.status_code == 200:
+                data = resp.json()
+                choices = data.get("choices", [])
+                if choices and "message" in choices[0]:
+                    content = choices[0]["message"].get("content", "").strip()
+                    if content:
+                        return content
+        except Exception:
+            pass
+
+        return None
 
     def _generate_with_anthropic(self, query: str, context_statutes: List[Dict[str, Any]]) -> Optional[str]:
         """Attempts generation using Anthropic Claude if ANTHROPIC_API_KEY is available."""
@@ -251,20 +333,36 @@ class LegalRAGEngine:
     def answer_query(self, query: str) -> Dict[str, Any]:
         """
         Main query orchestration pipeline.
-        Searches statutes, attempts LLM synthesis with fallback to deterministic generation,
+        Searches statutes, synthesizes response using OmniRoute antigravity/gemini-3.8-flash-tiered,
         and returns structured result.
         """
         top_matches = self.search_statutes(query, top_k=3)
-        
-        # Try Claude if available, else deterministic RAG
-        llm_answer = self._generate_with_anthropic(query, top_matches)
-        mode = "LLM-Grounded (Anthropic Claude)" if llm_answer else "Deterministic Extractive RAG"
-        final_answer = llm_answer if llm_answer else self._generate_deterministic_answer(query, top_matches)
+        relevant_matches = [m for m in top_matches if m.get("relevance_score", 0.0) >= 0.08]
+
+        # 1. Try OmniRoute (antigravity/gemini-3.8-flash-tiered)
+        llm_answer = self._generate_with_omniroute(
+            query, 
+            relevant_matches if relevant_matches else (top_matches[:2] if any(w in query.lower() for w in ["law", "section", "fir", "police", "court", "act", "rights", "bns", "ipc", "crpc", "cheat", "scam", "arrest"]) else [])
+        )
+        mode = f"LLM-Grounded ({os.environ.get('OMNIROUTE_MODEL', 'antigravity/gemini-3.8-flash-tiered')})" if llm_answer else None
+
+        # 2. Try Anthropic Claude fallback
+        if not llm_answer:
+            llm_answer = self._generate_with_anthropic(query, relevant_matches if relevant_matches else top_matches)
+            if llm_answer:
+                mode = "LLM-Grounded (Anthropic Claude)"
+
+        # 3. Deterministic RAG fallback (only when offline or network fails)
+        if not llm_answer:
+            final_answer = self._generate_deterministic_answer(query, top_matches)
+            mode = "Deterministic Extractive RAG"
+        else:
+            final_answer = llm_answer
 
         # Dynamic follow-up recommendations
         followups = []
-        if top_matches:
-            top_cat = top_matches[0].get("category", "")
+        if relevant_matches:
+            top_cat = relevant_matches[0].get("category", "")
             if "Criminal" in top_cat:
                 followups = [
                     "Can the police arrest someone without a warrant for this?",
@@ -289,11 +387,18 @@ class LegalRAGEngine:
                     "How do I file a first appeal under Section 19 of RTI?",
                     "What should I do if an FIR is refused?"
                 ]
+        else:
+            followups = [
+                "Someone cheated me of money promising a fake job. What are my remedies?",
+                "What are my rights if police arrest me or want to detain me without a warrant?",
+                "Can a police station refuse to register my FIR? What is a Zero-FIR?",
+                "How to file a consumer complaint on e-Daakhil without a lawyer?"
+            ]
 
         return {
             "query": query,
             "answer": final_answer,
-            "citations": top_matches,
+            "citations": relevant_matches,
             "mode": mode,
             "suggested_followups": followups
         }

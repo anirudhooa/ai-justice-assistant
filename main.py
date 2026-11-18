@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -72,7 +76,9 @@ async def health_check():
         "status": "healthy",
         "service": "AI Justice Department Assistant",
         "statutes_indexed": len(rag_engine.statutes),
-        "anthropic_configured": bool(os.environ.get("ANTHROPIC_API_KEY"))
+        "omniroute_configured": bool(os.environ.get("OMNIROUTE_API_KEY")),
+        "omniroute_base_url": os.environ.get("OMNIROUTE_BASE_URL", "http://localhost:20128/v1"),
+        "omniroute_model": os.environ.get("OMNIROUTE_MODEL", "antigravity/gemini-3.8-flash-tiered")
     }
 
 if __name__ == "__main__":
